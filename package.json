@@ -1,0 +1,21 @@
+{
+  "name": "saintnicholasua-bot",
+  "version": "1.0.0",
+  "description": "bot for telegram",
+  "main": "handler.js",
+  "scripts": {
+    "deploy": "sls deploy",
+    "logs": "sls logs --function hello -t",
+    "test": "test"
+  },
+  "author": "Vladislav Hirsa",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "telegraf": "^4.7.0"
+  },
+  "devDependencies": {
+    "serverless": "^3.13.0",
+    "serverless-dotenv-plugin": "^3.12.2"
+  }
+}

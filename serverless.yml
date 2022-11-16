@@ -1,0 +1,93 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: saintnicholasua-bot
+# app and org for use with dashboard.serverless.com
+# app: aws-node-http-api
+org: vhirsa
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: '3'
+configValidationMode: error
+
+useDotenv: true
+
+plugins:
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-central-1
+  stage: prod
+  # lambdaHashingVersion: 20201221
+
+# you can overwrite defaults here
+#  stage: dev
+#  region: us-east-1
+
+# you can add statements to the Lambda function's IAM Role here
+#  iam:
+#    role:
+#      statements:
+#        - Effect: "Allow"
+#          Action:
+#            - "s3:ListBucket"
+#          Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+#        - Effect: "Allow"
+#          Action:
+#            - "s3:PutObject"
+#          Resource:
+#            Fn::Join:
+#              - ""
+#              - - "arn:aws:s3:::"
+#                - "Ref" : "ServerlessDeploymentBucket"
+#                - "/*"
+
+# you can define service wide environment variables here
+#  environment:
+#    variable1: value1
+
+# you can add packaging information here
+#package:
+#  patterns:
+#    - '!exclude-me.js'
+#    - '!exclude-me-dir/**'
+#    - include-me.js
+#    - include-me-dir/**
+
+functions:
+  webhook:
+    handler: handler.webhook
+    timeout: 30
+    events:
+      - http: POST /saintnicholasua-bot
+
+
+# serverless.yml
+
+# Optional deployment packaging configuration
+package:
+  # Directories and files to include in the deployed package
+  patterns:
+    - handler.js
+    - '!.git/**'
+    - '!.travis.yml'
+  # Package each function as an individual artifact (default: false)
+  individually: true
+  # Explicitly set the package artifact to deploy (overrides native packaging behavior)
+  # artifact: path/to/my-artifact.zip
+  # Automatically exclude NPM dev dependencies from the deployed package (default: true)
+  # excludeDevDependencies: false
+
