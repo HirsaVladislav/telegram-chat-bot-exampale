@@ -80,7 +80,7 @@ module.exports.webhook = async (event) => {
   });
 
   bot.hears('Зателефонувати', async (ctx) => {
-    return bot.telegram.sendMessage(ctx.chat.id, '+380 99 402 35 82')
+    return bot.telegram.sendMessage(ctx.chat.id, 'here need be phone number')
   });
 
   bot.hears('🌐 Мій сайт', ctx => {
